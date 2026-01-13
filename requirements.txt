@@ -4,6 +4,7 @@ asyncpg
 python-dotenv
 sqlalchemy
 pydantic
+pydantic-settings
 pytest
 pytest-asyncio
 httpx
