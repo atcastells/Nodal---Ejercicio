@@ -1,0 +1,31 @@
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: nodal_db
+    environment:
+      POSTGRES_USER: nodal
+      POSTGRES_PASSWORD: nodal_password
+      POSTGRES_DB: nodal_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - nodal_net
+
+  api:
+    build: .
+    container_name: nodal_api
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - nodal_net
+
+volumes:
+  pgdata:
+
+
+networks:
+  nodal_net:
